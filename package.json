@@ -1,30 +1,27 @@
 {
-  "name": "react-avancado-boilerplate",
+  "name": "pokedex",
   "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "deploy": "NODE_ENV=production next build",
     "start": "next start",
     "lint": "eslint src --max-warnings=0",
     "test": "jest",
     "test:watch": "yarn test --watch",
     "generate": "yarn plop --plopfile generators/plopfile.js",
     "storybook": "start-storybook -s ./public -p 6006",
-    "build-storybook": "build-storybook -s ./public",
-    "postinstall": "husky install"
-  },
-  "lint-staged": {
-    "src/**/*": [
-      "yarn lint --fix",
-      "yarn test --findRelatedTests --bail"
-    ]
+    "build-storybook": "build-storybook -s ./public"
   },
   "dependencies": {
     "next": "10.1.1",
     "next-pwa": "^5.0.6",
+    "pokedex-promise-v2": "^3.3.0",
+    "polished": "^4.1.1",
     "react": "17.0.2",
     "react-dom": "17.0.2",
+    "react-notifications": "^1.7.2",
     "styled-components": "5.2.1"
   },
   "devDependencies": {

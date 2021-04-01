@@ -1,0 +1,21 @@
+{
+  "name": "Pokedex - Maxwell Kenned",
+  "short_name": "Pokedex",
+  "start_url": ".",
+  "display": "fullscreen",
+  "background_color":  "#D3EFF4",
+  "description": "Projeto de pokedex utilizando a pokeapi, feito por Maxwell kenned",
+  "theme_color": "#D3EFF4",
+  "icons": [
+    {
+      "src": "/img/icon-192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/img/icon-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ]
+}

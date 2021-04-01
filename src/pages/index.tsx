@@ -1,5 +1,13 @@
-import Main from 'components/Main'
+import { NotificationContainer } from 'react-notifications'
+import 'react-notifications/lib/notifications.css'
+
+import Pokedex from 'components/Pokedex'
 
 export default function Home() {
-  return <Main />
+  return (
+    <>
+      <Pokedex />
+      <NotificationContainer />
+    </>
+  )
 }
