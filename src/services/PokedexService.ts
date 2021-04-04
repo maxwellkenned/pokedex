@@ -1,23 +1,18 @@
-// @ts-ignore: this lib does not have types // https://github.com/PokeAPI/pokedex-promise-v2
-import PokedexApi from 'pokedex-promise-v2'
 import { NotificationManager } from 'react-notifications'
 
+import api from '../config/api'
+import { config as pokeApiConfig } from '../config/pokeApi'
 interface IGetPokemonProps {
   id: number | string
 }
 
 interface IPokedexPormise {
+  getPokemon(data: IGetPokemonProps): Promise<any>
   getPokemonByName(id: string | number): Promise<any>
   getPokemonSpeciesByName(id: string | number): Promise<any>
 }
 
-export default class PokedexService {
-  private pokedex: IPokedexPormise
-
-  constructor() {
-    this.pokedex = new PokedexApi()
-  }
-
+export default class PokedexService implements IPokedexPormise {
   _serializer(data) {
     const abilities = data.abilities.map(({ ability }) => ability.name)
     const forms = data.forms.map(item => item.name)
@@ -48,10 +43,9 @@ export default class PokedexService {
 
   public async getPokemon({ id }: IGetPokemonProps) {
     try {
-      const pokemon = await this.pokedex.getPokemonByName(id)
-      const species = await this.pokedex.getPokemonSpeciesByName(
-        pokemon.species.name
-      )
+      const idFiltered = pokeApiConfig.INDEXNOTFOUND[id]
+      const pokemon = await this.getPokemonByName(idFiltered || id)
+      const species = await this.getPokemonSpeciesByName(pokemon.species.name)
 
       return this._serializer({ ...pokemon, species })
     } catch (err) {
@@ -62,5 +56,17 @@ export default class PokedexService {
 
       return undefined
     }
+  }
+
+  public async getPokemonByName(id: string | number) {
+    const { data } = await api.get(`pokemon/${id}/`)
+
+    return data
+  }
+
+  public async getPokemonSpeciesByName(id: string | number) {
+    const { data } = await api.get(`pokemon-species/${id}/`)
+
+    return data
   }
 }

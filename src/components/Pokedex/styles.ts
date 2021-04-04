@@ -4,20 +4,27 @@ import { getContrast, lighten, shade } from 'polished'
 export const Wrapper = styled.main<{ bg: string }>`
   background-color: ${props => lighten(0.1, props.bg) || '#fff'};
   color: ${props => (getContrast(props.bg, '#000') > 3 ? '#000' : '#fff')};
-  width: 100%;
-  height: 100%;
-  padding: 3rem;
   display: flex;
-  text-align: center;
+  overflow: hidden;
+  flex: 1;
+  min-height: 100vh;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
   transition: all 2s;
 
   h1 {
+    width: 100%;
+    text-align: center;
     font-size: 3rem;
     text-shadow: 0px -2px 7px #00000070;
+    margin-top: 3rem;
     margin-bottom: 2rem;
+
+    @media screen and (max-width: 641px) {
+      font-size: 2rem;
+    }
   }
 
   div.search {
@@ -25,7 +32,14 @@ export const Wrapper = styled.main<{ bg: string }>`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
+    width: 80%;
+
+    form {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
 
     input {
       box-shadow: 0px 1px 10px 0px #00000070;
@@ -35,6 +49,12 @@ export const Wrapper = styled.main<{ bg: string }>`
       border-radius: 3px;
       padding: 5px 20px;
       font-size: 1rem;
+      text-align: center;
+
+      @media screen and (max-width: 641px) {
+        width: 100%;
+        padding: 5px 15px;
+      }
 
       &:focus {
         outline: none;
@@ -44,6 +64,10 @@ export const Wrapper = styled.main<{ bg: string }>`
         text-align: center;
         color: #333;
         font-size: 1rem;
+
+        @media screen and (max-width: 641px) {
+          font-size: 14px;
+        }
       }
     }
   }
@@ -75,7 +99,17 @@ export const Wrapper = styled.main<{ bg: string }>`
       justify-content: center;
 
       h2 {
+        display: flex;
+        align-items: center;
+        justify-content: center;
         min-width: 350px;
+
+        @media screen and (max-width: 641px) {
+          min-width: max(70%, 224px);
+          width: max(70%, 224px);
+          line-height: 1.4rem;
+          font-size: 1.4rem;
+        }
       }
 
       button {
@@ -101,12 +135,28 @@ export const Wrapper = styled.main<{ bg: string }>`
       }
     }
 
-    .image {
+    .contentImage {
       min-height: 500px;
-      min-width: 400px;
+
+      @media screen and (max-width: 641px) {
+        min-height: 239px;
+        height: 239px;
+        width: 239px;
+      }
+
+      div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
 
       span {
+        margin-top: 10px;
         margin-bottom: 3rem;
+
+        @media screen and (max-width: 641px) {
+          margin-bottom: 1rem;
+        }
       }
     }
   }

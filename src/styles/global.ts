@@ -4,8 +4,9 @@ const GlobalStyles = createGlobalStyle`
   * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    border: 0;
     outline: none;
+    box-sizing: border-box;
   }
 
   html, body, #__next {
@@ -13,12 +14,12 @@ const GlobalStyles = createGlobalStyle`
   }
 
   body {
-    font-family: monospace;
-  }
-
-  div {
-    display: flex;
-    flex-direction:column;
+    font-family: Roboto, sans-serif;
+    background-color:  #f4f4f7;
+    color: #1a1a1a;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 400;
   }
 `
 

@@ -18,6 +18,7 @@ const Pokedex = () => {
     const getData = async () => {
       const id = (Math.random() * pokeApiConfig.LASTNORMALPOKEMON) | 0
       const responseApi = await pokedexService.getPokemon({ id })
+
       setData(responseApi)
     }
 
@@ -62,6 +63,10 @@ const Pokedex = () => {
       }
 
       await getPokemonApi(id)
+
+      if (inputSearchRef.current?.value) {
+        inputSearchRef.current.value = ''
+      }
     },
     [getPokemonApi]
   )
@@ -97,10 +102,11 @@ const Pokedex = () => {
           </h2>
           <button onClick={handleIncrease}>{'>'}</button>
         </div>
-        <div className="image">
+        <div className="contentImage">
           <FadeIn>
             <span>{data.types.join(' and ')} type Pokemon</span>
             <Image
+              className="image"
               src={
                 (data && data.sprites.other.dream_world.front_default) ||
                 data.sprites.front_default
