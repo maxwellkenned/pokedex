@@ -12,7 +12,6 @@ function App({ Component, pageProps }: AppProps) {
         <link rel="shortcut icon" href="/img/icon-512.png" />
         <link rel="apple-touch-icon" href="/img/icon-512.png" />
         <link rel="manifest" href="/manifest.webmanifest" />
-        <meta name="theme-color" content="#ffffff00" />
         <meta
           name="description"
           content="Projeto de pokedex utilizando nextJS consumindo a pokeApi, feito por Maxwell kenned"
