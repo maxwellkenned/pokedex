@@ -15,7 +15,10 @@ const FadeIn: React.FC = ({ children }) => {
     }
   }, [children])
 
-  return <S.FadeIn>{show && <div className="show">{children}</div>}</S.FadeIn>
+  return React.useMemo(
+    () => <S.FadeIn>{show && <div className="show">{children}</div>}</S.FadeIn>,
+    [children, show]
+  )
 }
 
 export default FadeIn

@@ -1,7 +1,9 @@
+import IPokemon from 'interfaces/IPokemon'
 import { NotificationManager } from 'react-notifications'
 
 import api from '../config/api'
-import { config as pokeApiConfig } from '../config/pokeApi'
+import { pokeApiConfig } from '../config/pokeApi'
+
 interface IGetPokemonProps {
   id: number | string
 }
@@ -13,7 +15,7 @@ interface IPokedexPormise {
 }
 
 export default class PokedexService implements IPokedexPormise {
-  _serializer(data) {
+  _serializer(data): IPokemon {
     const abilities = data.abilities.map(({ ability }) => ability.name)
     const forms = data.forms.map(item => item.name)
     const game_indices = data.game_indices.map(item => item.version.name)
@@ -41,8 +43,14 @@ export default class PokedexService implements IPokedexPormise {
     return serialized
   }
 
-  public async getPokemon({ id }: IGetPokemonProps) {
+  public async getPokemon({
+    id
+  }: IGetPokemonProps): Promise<IPokemon | undefined> {
     try {
+      if (!id) {
+        throw new Error('id not found')
+      }
+
       const idFiltered = pokeApiConfig.INDEXNOTFOUND[id]
       const pokemon = await this.getPokemonByName(idFiltered || id)
       const species = await this.getPokemonSpeciesByName(pokemon.species.name)

@@ -1,4 +1,4 @@
-export const config = {
+export const pokeApiConfig = {
   LASTNORMALPOKEMON: 898,
   FISTSPECIALPOKEMON: 10001,
   LASTPECIALPOKEMON: 10220,

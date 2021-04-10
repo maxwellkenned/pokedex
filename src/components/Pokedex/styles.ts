@@ -24,6 +24,7 @@ export const Wrapper = styled.main<{ bg: string }>`
 
     @media screen and (max-width: 641px) {
       font-size: 2rem;
+      margin-top: 0;
     }
   }
 
@@ -36,9 +37,16 @@ export const Wrapper = styled.main<{ bg: string }>`
     width: 80%;
 
     form {
-      width: 100%;
+      position: relative;
+      max-width: 500px;
       display: flex;
       justify-content: center;
+      align-items: center;
+
+      > div {
+        position: absolute !important;
+        right: 0;
+      }
     }
 
     input {
