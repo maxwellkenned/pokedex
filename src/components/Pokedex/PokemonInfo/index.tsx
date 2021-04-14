@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import FadeIn from 'components/FadeIn'
 import Image from 'next/image'
 import { usePokemon } from 'hooks/Pokemon'
+import Spring from 'components/Spring'
 
 const PokemonInfo: React.FC = () => {
   const { pokemon, nextPokemon, previousPokemon } = usePokemon()
@@ -12,15 +13,21 @@ const PokemonInfo: React.FC = () => {
       <section>
         <div className="contentDescription">
           <button onClick={previousPokemon}>{'<'}</button>
-          <h2>
-            <FadeIn>
-              {pokemon?.id
-                ? `#${String(pokemon?.id).padStart(3, '0')} - ${String(
-                    pokemon?.name
-                  )}`
-                : '#000 - Pokemon'}
-            </FadeIn>
-          </h2>
+          <FadeIn>
+            {pokemon?.id ? (
+              <Spring from={pokemon?.id - 5} to={pokemon?.id} delay={100}>
+                {id => (
+                  <h2>
+                    {`#${String(id).padStart(3, '0')} - ${String(
+                      pokemon?.name
+                    )}`}
+                  </h2>
+                )}
+              </Spring>
+            ) : (
+              <h2>{'#000 - Pokemon'}</h2>
+            )}
+          </FadeIn>
           <button onClick={nextPokemon}>{'>'}</button>
         </div>
         <div className="contentImage">

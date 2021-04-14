@@ -5,14 +5,12 @@ export const Wrapper = styled.main<{ bg: string }>`
   background-color: ${props => lighten(0.1, props.bg) || '#fff'};
   color: ${props => (getContrast(props.bg, '#000') > 3 ? '#000' : '#fff')};
   display: flex;
-  overflow: hidden;
   flex: 1;
   min-height: 100vh;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-
-  transition: all 2s;
+  padding-top: 5%;
+  transition: background-color 2s ease-in-out;
 
   h1 {
     width: 100%;
@@ -106,7 +104,7 @@ export const Wrapper = styled.main<{ bg: string }>`
       align-items: center;
       justify-content: center;
 
-      h2 {
+      > div {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -144,7 +142,39 @@ export const Wrapper = styled.main<{ bg: string }>`
     }
 
     .contentImage {
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
       min-height: 500px;
+      min-width: 1120px;
+      transition: all 3s;
+
+      .show div {
+        transition: all 1s;
+
+        &:hover {
+          max-width: unset !important;
+          width: 600px;
+          height: 590px;
+        }
+
+        > div {
+          margin: 100px 100px 50px;
+        }
+      }
+
+      img {
+        min-width: 400px !important;
+        min-height: 400px !important;
+        margin: 0 auto !important;
+        transition: all 1s;
+
+        &:hover {
+          margin-top: 12% !important;
+          transform: scale(1.2);
+          transition-timing-function: cubic-bezier(0.47, 2.02, 0.31, -0.36);
+        }
+      }
 
       @media screen and (max-width: 641px) {
         min-height: 239px;

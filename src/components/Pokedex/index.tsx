@@ -29,7 +29,10 @@ const Pokedex: React.FC = () => {
             content={pokemon?.species.color.name || `#ffffff`}
           />
           <title>
-            Pokedex - {capitalize(pokemon?.name) || 'Maxwell Kenned'}
+            Pokedex |{' '}
+            {`#${String(pokemon?.id).padStart(3, '0')} - ${capitalize(
+              pokemon?.name
+            )}` || 'Maxwell Kenned'}
           </title>
         </Head>
         <S.Wrapper bg={pokemon?.species.color.name || '#ffffff'}>
